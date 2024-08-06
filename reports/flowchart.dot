@@ -1,0 +1,9 @@
+digraph G {
+  A [label="Start"];
+  B [label="lta_login.py"];
+  C [label="play_childrens_lesson.py"];
+  D [label="End"];
+  A -> B;
+  B -> C;
+  C -> D;
+}

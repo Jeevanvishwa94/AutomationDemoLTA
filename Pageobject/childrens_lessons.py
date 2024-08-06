@@ -10,7 +10,7 @@ class LTAPlay(BasePage):
         self.actions = ActionChains(driver)
         super().__init__(driver)
         
-   
+
     def set_lta_username(self, lta_username):
         self.set(self.locate.Username, lta_username)
  
