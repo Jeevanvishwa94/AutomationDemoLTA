@@ -1,11 +1,35 @@
 pipeline {
     agent any
+
     stages {
-        stage('Build') {
+        stage('Clone Repository') {
             steps {
                 git branch: 'Automation-with-Jenkin', url: 'https://github.com/Jeevanvishwa94/AutomationDemoLTA.git'
             }
         }
- 
+        stage('Setup Python Environment') {
+            steps {
+                script {
+                    // Assuming you are using a virtual environment
+                    sh 'python -m venv myvenv'
+                    sh '. myvenv/Scripts/activate && pip install -r requirements.txt'
+                }
+            }
+        }
+        stage('Run Pytest') {
+            steps {
+                script {
+                    // Run the tests with Pytest
+                    sh '. myvenv/Scripts/activate && pytest --headless'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: '**/AllureReport/*', allowEmptyArchive: true
+            AllureReport 'AllureReport'
+        }
     }
 }
