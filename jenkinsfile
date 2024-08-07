@@ -3,18 +3,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git branch: 'main', url: 'https://github.com/Jeevanvishwa94/AutomationDemoLTA.git'
+                git branch: 'Automation-with-Jenkin', url: 'https://github.com/Jeevanvishwa94/AutomationDemoLTA.git'
             }
         }
-        stage('Test') {
-            steps {
-                'pytest -v testcase\test_play_childrens_lesson.py'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                'pytest -v testcase\test_lta_login.py'
-            }
-        }
+ 
     }
 }
