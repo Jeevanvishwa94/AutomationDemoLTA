@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                sh '''
+                bat '''
                 python -m venv myenv
                 myenv/Scripts/activate
                 pip install -r requirements.txt
@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Run Selenium Tests') {
             steps {
-                sh '''
+                bat '''
                 myenv/Scripts/activate
                 pytest --maxfail=5 --disable-warnings
                 '''
