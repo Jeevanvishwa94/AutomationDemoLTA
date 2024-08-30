@@ -2,34 +2,32 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
+        stage('Checkout') {
             steps {
-                git branch: 'Automation-with-Jenkin', url: 'https://github.com/Jeevanvishwa94/AutomationDemoLTA.git'
+                git 'https://github.com/Jeevanvishwa94/AutomationDemoLTA.git'
             }
         }
-        stage('Setup Python Environment') {
+        stage('Install Dependencies') {
             steps {
-                script {
-                    // Assuming you are using a virtual environment
-                    sh 'python -m venv myvenv'
-                    sh '. myvenv/Scripts/activate && pip install -r requirements.txt'
-                }
+                sh '''
+                python3 -m venv venv
+                source venv/bin/activate
+                pip install -r requirements.txt
+                '''
             }
         }
-        stage('Run Pytest') {
+        stage('Run Selenium Tests') {
             steps {
-                script {
-                    // Run the tests with Pytest
-                    sh '. myvenv/Scripts/activate && pytest --headless'
-                }
+                sh '''
+                source venv/bin/activate
+                pytest --maxfail=5 --disable-warnings
+                '''
             }
         }
     }
-
     post {
         always {
-            archiveArtifacts artifacts: '**/AllureReport/*', allowEmptyArchive: true
-            AllureReport 'AllureReport'
+            cleanWs()
         }
     }
 }
