@@ -10,8 +10,8 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                python3 -m venv venv
-                source venv/bin/activate
+                python -m venv myenv
+                myenv/Scripts/activate
                 pip install -r requirements.txt
                 '''
             }
@@ -19,7 +19,7 @@ pipeline {
         stage('Run Selenium Tests') {
             steps {
                 sh '''
-                source venv/bin/activate
+                myenv/Scripts/activate
                 pytest --maxfail=5 --disable-warnings
                 '''
             }
