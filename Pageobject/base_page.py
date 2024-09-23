@@ -41,3 +41,16 @@ class BasePage:
         from selenium.webdriver.common.action_chains import ActionChains
         action = ActionChains(self.driver)
         action.move_to_element(element).perform() 
+        
+    def find_element(self, locator):
+        return WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located(locator)
+        )
+
+    # def scroll_into_view_and_click(self, locator):
+    #     element = self.find_element(locator)
+    #     self.driver.execute_script("arguments[0].scrollIntoView();", element)
+    #     element.click()    
+    def js_click(self, locator):
+        element = self.find_element(locator)
+        self.driver.execute_script("arguments[0].click();", element)    

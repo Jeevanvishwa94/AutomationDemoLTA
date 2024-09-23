@@ -17,7 +17,7 @@ def initialize_driver(request):
         raise ValueError(f"Unsupported browser: {request.param}")         
     request.cls.driver = driver
     print("Browser:", request.param)
-    driver.get(TestData.url)
+    driver.get(TestData.ppeurl)
     driver.maximize_window()
     yield
     print("Close Driver")

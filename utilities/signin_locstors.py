@@ -1,0 +1,23 @@
+from selenium.webdriver.common.by import By
+ 
+class SiginLocators:
+    Username = (By.ID, "u")
+    Password = (By.ID, "p")
+    Verify_button = (By.XPATH, "//input[@type='submit']")
+    all_cookies =(By.XPATH,"//button[@id='lta-cookies-button']")
+    sigin_button = (By.XPATH,"//a[text()='Sign in']")
+    signin_username = (By.XPATH,"//input[@aria-labelledby='151:0-label']")
+    signin_password = (By.XPATH,"//input[@class='slds-input']")
+    click_signin_button = (By.XPATH,"//button[@title='Log in']")
+    click_avator=(By.XPATH,"//li[@class='lta-mega-nav__item lta-mega-nav__advantage-menu-button u-hidden js-lta-mega-nav__item sm:u-hidden xl:u-flex']//button[@aria-label='Toggle Advantage Menu']//*[name()='svg']")
+    click_add_new_role=(By.XPATH,"//a[@class='lta-btn lta-btn--md lta-btn--line lta-btn--block lta-btn--icon lta-btn--icon-before lta-add-new-role-btn u-mb-2 sm:u-hidden xl:u-inline-block']//*[name()='svg']")
+    click_let_start_button=(By.XPATH,"//button[@class='lta-btn lta-btn--default lta-btn--inverse lta-btn--icon lta-btn--icon-after lta-btn--block multiple-roles-onboarding-journey']//*[name()='svg']")
+    click_parks_activators=(By.XPATH,"//input[@id='Parks Activators']")
+    # click_activator_button=(By.XPATH,"//input[@id='Activators']")
+    # click_teacher_radio_button=(By.XPATH,"//input[@id='Teachers']") 
+    # click_next_button=(By.XPATH,"//button[normalize-space()='Next']")
+    # click_get_start_button=(By.XPATH,"//button[normalize-space()='Get started']//*[name()='svg']")
+    # click_teacher_student_button=(By.XPATH,"//input[@id='radio-button-question-1-0']")
+    # click_next_button_again=(By.XPATH,"//button[normalize-space()='Next']")
+    # click_senior_leader_button=(By.XPATH,"//input[@id='radio-button-question-2-1']")
+    # enter_school_pincode=(By.XPATH,"//input[@id='lta-search-input-field-id-3']")
