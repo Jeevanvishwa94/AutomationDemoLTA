@@ -2,32 +2,31 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Clone Repository') {
             steps {
-                 git branch: 'main', url: 'https://github.com/Jeevanvishwa94/AutomationDemoLTA.git'
+                git 'https://github.com/Jeevanvishwa94/AutomationDemoLTA.git'
             }
         }
+
         stage('Install Dependencies') {
             steps {
-                bat '''
-                python -m venv myenv
-                myenv/Scripts/activate
-                pip install -r requirements.txt
-                '''
+                // Ensure you have a requirements.txt file in the repo
+                bat 'pip install -r requirements.txt'
             }
         }
-        stage('Run Selenium Tests') {
+
+        stage('Run Tests') {
             steps {
-                bat '''
-                myenv/Scripts/activate
-                pytest --maxfail=5 --disable-warnings
-                '''
+                // Run your Python automation code
+                bat 'python -m pytest tests/'
             }
         }
     }
+
     post {
         always {
-            cleanWs()
+            junit '**/test-reports/*.xml'  // Generate test reports if needed
+            archiveArtifacts artifacts: '**/test-reports/*.xml', allowEmptyArchive: true
         }
     }
 }
